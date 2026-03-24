@@ -183,7 +183,7 @@ with st.sidebar:
     )
     st.markdown("---")
     st.markdown("### ⚡ Powered By")
-    st.markdown("🤖 **Groq API** — llama-3.1-8b-instant\n\n🎨 **Streamlit** — UI Framework")
+    st.markdown("🤖 **Groq API** — llama-3.3-70b-versatile\n\n🎨 **Streamlit** — UI Framework")
     st.markdown("---")
     st.caption("Made with ❤️ for Indian Students")
 
