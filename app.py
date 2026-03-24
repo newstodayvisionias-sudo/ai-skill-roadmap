@@ -237,7 +237,9 @@ align-items: center !important;
 justify-content: center !important;
 }
 .stSelectbox label p { color:var(--text-sec) !important; font-size:0.85rem !important; font-weight:500 !important; }
-
+.stSelectbox label {
+    margin-bottom: 4px !important;
+}
 /* ════ BUTTONS ════ */
 div.stButton > button {
     background: linear-gradient(135deg, #7c6af7, #5546c0) !important;
@@ -257,7 +259,7 @@ div.stButton > button:hover {
 }
 div.stButton > button:active { transform: translateY(0) !important; }
 /* chip buttons */
-chip-btn {
+.chip-btn {
     height: 60px;
 }
 .chip-btn div.stButton > button {
@@ -291,6 +293,9 @@ chip-btn {
 }
 
 /* generate button */
+.gen-btn {
+    margin-top: 28px;
+}
 .gen-btn div.stButton > button {
 height: 55px !important;
 display: flex !important;
