@@ -947,15 +947,6 @@ with col_center:
 st.markdown('<div style="margin:-0.3rem 0 0.6rem;"><span style="font-size:0.7rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">Quick Select →</span></div>',
             unsafe_allow_html=True)
 
-cols = st.columns(4)
-
-for i, skill in enumerate(SKILL_CHIPS):
-    with cols[i % 4]:
-        st.markdown('<div class="chip-btn">', unsafe_allow_html=True)
-        if st.button(skill, key=f"chip_{skill}"):
-            st.session_state.skill_input_val = skill
-            st.rerun()
-        st.markdown('</div>', unsafe_allow_html=True)
 
 cols = st.columns(4)
 
