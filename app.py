@@ -939,21 +939,23 @@ col_center = st.columns([1,2,1])[1]
 st.markdown('<div style="margin:-0.3rem 0 0.6rem;"><span style="font-size:0.7rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">Quick Select →</span></div>',
             unsafe_allow_html=True)
 
-chip_row1 = st.columns(8)
-for ci, cn in enumerate(SKILL_CHIPS[:8]):
-    with chip_row1[ci]:
+cols = st.columns(4)
+
+for i, skill in enumerate(SKILL_CHIPS):
+    with cols[i % 4]:
         st.markdown('<div class="chip-btn">', unsafe_allow_html=True)
-        if st.button(cn, key=f"ca_{cn}"):
-            st.session_state.skill_input_val = cn
+        if st.button(skill, key=f"chip_{skill}"):
+            st.session_state.skill_input_val = skill
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
 
-chip_row2 = st.columns(8)
-for ci, cn in enumerate(SKILL_CHIPS[8:]):
-    with chip_row2[ci]:
+cols = st.columns(4)
+
+for i, skill in enumerate(SKILL_CHIPS):
+    with cols[i % 4]:
         st.markdown('<div class="chip-btn">', unsafe_allow_html=True)
-        if st.button(cn, key=f"cb_{cn}"):
-            st.session_state.skill_input_val = cn
+        if st.button(skill, key=f"chip_{skill}"):
+            st.session_state.skill_input_val = skill
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
 
