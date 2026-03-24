@@ -226,17 +226,22 @@ input[type="text"] { color:#fff !important; }
 input::placeholder { color:var(--text-muted) !important; }
 
 /* ════ SELECT BOX ════ */
+/* selectbox height fix */
 .stSelectbox > div > div {
-    background: rgba(255,255,255,0.05) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: var(--rad-md) !important;
-    color: var(--text-pri) !important;
-
     height: 55px !important;
-    display: flex !important;
-    align-items: center !important;
+    min-height: 55px !important;
+}
 
-    padding: 0 12px !important;
+/* button same height */
+.gen-btn div.stButton > button {
+    height: 55px !important;
+}
+
+/* PERFECT ALIGNMENT */
+div[data-testid="column"] {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
 }
 .stSelectbox label p { color:var(--text-sec) !important; font-size:0.85rem !important; font-weight:500 !important; }
 .stSelectbox label {
@@ -514,7 +519,7 @@ div[data-testid="column"] {
 
 /* button ke beech vertical space remove */
 .chip-btn {
-    margin-bottom: 2px !important;
+    margin-bottom: 0px !important;
 }
 
 /* button height thodi reduce (optional but pro look) */
