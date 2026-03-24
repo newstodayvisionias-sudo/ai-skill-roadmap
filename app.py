@@ -534,8 +534,14 @@ div[data-testid="column"] {
 .block-container {
     padding-top: 1rem !important;
 }
+div[data-testid="column"] > div {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+}
+
 .gen-btn {
-    margin-top: 26px !important;
+    margin-top: 6px !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -1031,7 +1037,7 @@ for i in range(0, len(SKILL_CHIPS), 4):
 
 
 # Language | Difficulty | Generate
-col_l, col_d, col_g = st.columns([1,1,1], vertical_alignment="bottom")
+col_l, col_d, col_g = st.columns([1,1,1])
 with col_l:
     lang_label = st.selectbox("🌐 Language", list(LANG_OPTIONS.keys()), index=0, key="sel_lang")
     lang_key   = LANG_OPTIONS[lang_label]
