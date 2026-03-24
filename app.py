@@ -506,9 +506,6 @@ div[data-testid="stAlert"] { border-radius:var(--rad-md) !important; border:none
 /* ULTRA COMPACT CHIP GRID FIX */
 
 /* row gap almost zero */
-div.row-widget.stHorizontal {
-    gap: 2px !important;
-}
 
 /* column ke neeche ka gap hata do */
 div[data-testid="column"] {
