@@ -507,7 +507,7 @@ div[data-testid="stAlert"] { border-radius:var(--rad-md) !important; border:none
 
 /* row gap almost zero */
 div.row-widget.stHorizontal {
-    gap: 4px !important;
+    gap: 2px !important;
 }
 
 /* column ke neeche ka gap hata do */
