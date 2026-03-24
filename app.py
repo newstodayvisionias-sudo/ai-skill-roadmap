@@ -230,18 +230,21 @@ input::placeholder { color:var(--text-muted) !important; }
 .stSelectbox > div > div {
     height: 55px !important;
     min-height: 55px !important;
+    display: flex !important;
+    align-items: center !important;
 }
 
-/* button same height */
+/* BUTTON SAME HEIGHT */
 .gen-btn div.stButton > button {
     height: 55px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
-/* PERFECT ALIGNMENT */
-div[data-testid="column"] {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-end !important;
+/* LABEL GAP FIX */
+.stSelectbox label {
+    margin-bottom: 6px !important;
 }
 .stSelectbox label p { color:var(--text-sec) !important; font-size:0.85rem !important; font-weight:500 !important; }
 .stSelectbox label {
@@ -530,6 +533,9 @@ div[data-testid="column"] {
 /* pura grid tight karne ke liye */
 .block-container {
     padding-top: 1rem !important;
+}
+.gen-btn {
+    margin-top: 26px !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -1025,7 +1031,7 @@ for i in range(0, len(SKILL_CHIPS), 4):
 
 
 # Language | Difficulty | Generate
-col_l, col_d, col_g = st.columns(3)
+col_l, col_d, col_g = st.columns([1,1,1], vertical_alignment="bottom")
 with col_l:
     lang_label = st.selectbox("🌐 Language", list(LANG_OPTIONS.keys()), index=0, key="sel_lang")
     lang_key   = LANG_OPTIONS[lang_label]
