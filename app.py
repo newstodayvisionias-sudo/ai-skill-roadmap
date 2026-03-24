@@ -231,6 +231,10 @@ input::placeholder { color:var(--text-muted) !important; }
     border: 1px solid var(--border) !important;
     border-radius: var(--rad-md) !important;
     color: var(--text-pri) !important;
+    height: 55px !important;
+display: flex !important;
+align-items: center !important;
+justify-content: center !important;
 }
 .stSelectbox label p { color:var(--text-sec) !important; font-size:0.85rem !important; font-weight:500 !important; }
 
@@ -288,6 +292,10 @@ chip-btn {
 
 /* generate button */
 .gen-btn div.stButton > button {
+height: 55px !important;
+display: flex !important;
+align-items: center !important;
+justify-content: center !important;
     background: linear-gradient(135deg, #f9d423, #ff6b35) !important;
     color: #1a0f40 !important;
     font-size: 1.02rem !important;
@@ -974,7 +982,6 @@ for i in range(0, len(SKILL_CHIPS), 4):
 
 
 
-st.markdown("<br>", unsafe_allow_html=True)
 
 # Language | Difficulty | Generate
 col_l, col_d, col_g = st.columns(3)
@@ -985,7 +992,7 @@ with col_d:
     diff_label = st.selectbox("📊 Difficulty", list(DIFF_OPTIONS.keys()), index=0, key="sel_diff")
     diff_key   = DIFF_OPTIONS[diff_label]
 with col_g:
-    st.markdown("<br>", unsafe_allow_html=True)
+    
     st.markdown('<div class="gen-btn">', unsafe_allow_html=True)
     generate_btn = st.button("✨ Generate Roadmap", use_container_width=True, key="gen_main")
     st.markdown('</div>', unsafe_allow_html=True)
