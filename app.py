@@ -1005,7 +1005,8 @@ st.markdown('<div style="margin:-0.3rem 0 0.6rem;"><span style="font-size:0.7rem
 
 for i in range(0, len(SKILL_CHIPS), 4):
     row = SKILL_CHIPS[i:i+4]
-    cols = st.columns(4)
+
+    cols = st.columns(4, gap=None)  # 🔥 THIS LINE FIXES GAP
 
     for col, skill in zip(cols, row):
         with col:
@@ -1024,7 +1025,7 @@ for i in range(0, len(SKILL_CHIPS), 4):
 
 
 # Language | Difficulty | Generate
-col_l, col_d, col_g = st.columns(3)
+col_l, col_d, col_g = st.columns([1,1,1], vertical_alignment="bottom")
 with col_l:
     lang_label = st.selectbox("🌐 Language", list(LANG_OPTIONS.keys()), index=0, key="sel_lang")
     lang_key   = LANG_OPTIONS[lang_label]
