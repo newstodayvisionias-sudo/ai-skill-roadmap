@@ -255,12 +255,29 @@ div.stButton > button:active { transform: translateY(0) !important; }
 
 /* chip buttons */
 .chip-btn div.stButton > button {
-    width: 100% !important;       /* full column width */
-    height: 50px !important;      /* fixed height */
+     width: 100% !important;
+    height: 55px !important;  /* fixed height */
+
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    text-align: center !important;
+
+    padding: 0 10px !important;  /* equal padding */
+
+    background: rgba(124,106,247,0.12) !important;
+    border: 1px solid rgba(124,106,247,0.3) !important;
+    color: #c4b8ff !important;
+
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+
+    border-radius: 12px !important;
+    box-shadow: none !important;
+
+    white-space: nowrap !important;   /* 🔥 MOST IMPORTANT */
+    overflow: hidden !important;
+    text-overflow: ellipsis !important; /* long text cut */
+}
 
     background: rgba(124,106,247,0.12) !important;
     border: 1px solid rgba(124,106,247,0.3) !important;
