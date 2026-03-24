@@ -278,29 +278,6 @@ div.stButton > button:active { transform: translateY(0) !important; }
     overflow: hidden !important;
     text-overflow: ellipsis !important;
 }
-    color: #c4b8ff !important;
-
-    font-size: 0.82rem !important;
-    font-weight: 500 !important;
-
-    border-radius: 12px !important;
-    box-shadow: none !important;
-
-    white-space: nowrap !important;   /* 🔥 MOST IMPORTANT */
-    overflow: hidden !important;
-    text-overflow: ellipsis !important; /* long text cut */
-}
-
-    background: rgba(124,106,247,0.12) !important;
-    border: 1px solid rgba(124,106,247,0.3) !important;
-    color: #c4b8ff !important;
-
-    font-size: 0.8rem !important;
-    font-weight: 500 !important;
-
-    border-radius: 12px !important;
-    box-shadow: none !important;
-}
 .chip-btn div.stButton > button:hover {
     background: rgba(124,106,247,0.25) !important;
     transform: none !important;
