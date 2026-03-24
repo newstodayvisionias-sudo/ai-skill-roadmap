@@ -503,14 +503,31 @@ div[data-testid="stAlert"] { border-radius:var(--rad-md) !important; border:none
 @media (max-width:480px) {
     .premium-banner { flex-direction:column; }
 }
-/* FIX: row gap */
+/* ULTRA COMPACT CHIP GRID FIX */
+
+/* row gap almost zero */
 div.row-widget.stHorizontal {
-    gap: 6px !important;
+    gap: 4px !important;
 }
 
-/* FIX: align generate button with selectbox */
-div[data-testid="stHorizontalBlock"] {
-    align-items: end !important;
+/* column ke neeche ka gap hata do */
+div[data-testid="column"] {
+    padding-bottom: 0px !important;
+}
+
+/* button ke beech vertical space remove */
+.chip-btn {
+    margin-bottom: 2px !important;
+}
+
+/* button height thodi reduce (optional but pro look) */
+.chip-btn div.stButton > button {
+    height: 48px !important;
+}
+
+/* pura grid tight karne ke liye */
+.block-container {
+    padding-top: 1rem !important;
 }
 </style>
 """, unsafe_allow_html=True)
