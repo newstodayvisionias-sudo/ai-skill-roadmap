@@ -255,13 +255,21 @@ div.stButton > button:active { transform: translateY(0) !important; }
 
 /* chip buttons */
 .chip-btn div.stButton > button {
+    width: 100% !important;       /* full column width */
+    height: 50px !important;      /* fixed height */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+
     background: rgba(124,106,247,0.12) !important;
     border: 1px solid rgba(124,106,247,0.3) !important;
     color: #c4b8ff !important;
-    font-size: 0.79rem !important;
+
+    font-size: 0.8rem !important;
     font-weight: 500 !important;
-    padding: 0.3rem 0.7rem !important;
-    border-radius: 99px !important;
+
+    border-radius: 12px !important;
     box-shadow: none !important;
 }
 .chip-btn div.stButton > button:hover {
