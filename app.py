@@ -134,8 +134,11 @@ html, body, [class*="css"] {
         radial-gradient(ellipse 80% 60% at 80% 100%, #0f1f3d, transparent),
         #06040f !important;
 }
-.block-container { padding-top: 0.8rem !important; max-width: 1100px !important; }
-#MainMenu, footer, header { visibility: hidden !important; }
+.block-container {
+    max-width: 1400px !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+}
 .stDeployButton { display: none !important; }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #06040f; }
