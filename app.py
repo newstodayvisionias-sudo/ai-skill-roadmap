@@ -252,8 +252,10 @@ div.stButton > button:hover {
     box-shadow: 0 8px 28px rgba(124,106,247,0.5) !important;
 }
 div.stButton > button:active { transform: translateY(0) !important; }
-
 /* chip buttons */
+chip-btn {
+    height: 60px;
+}
 .chip-btn div.stButton > button {
     width: 100% !important;
     height: 55px !important;
