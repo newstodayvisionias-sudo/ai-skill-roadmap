@@ -267,7 +267,7 @@ div.stButton > button:active { transform: translateY(0) !important; }
 }
 /* rows ke beech gap control */
 div[data-testid="column"] {
-    padding-bottom: 0.3rem !important;
+    padding-bottom: 0.1rem !important;
 }
 .chip-btn div.stButton > button {
     width: 100% !important;
@@ -301,7 +301,7 @@ div[data-testid="column"] {
 
 /* generate button */
 .gen-btn {
-    margin-top: 22px !important;
+    margin-top: 0px !important;
 }
 .gen-btn div.stButton > button {
 height: 55px !important;
@@ -502,6 +502,15 @@ div[data-testid="stAlert"] { border-radius:var(--rad-md) !important; border:none
 }
 @media (max-width:480px) {
     .premium-banner { flex-direction:column; }
+}
+/* FIX: row gap */
+div.row-widget.stHorizontal {
+    gap: 6px !important;
+}
+
+/* FIX: align generate button with selectbox */
+div[data-testid="stHorizontalBlock"] {
+    align-items: end !important;
 }
 </style>
 """, unsafe_allow_html=True)
