@@ -157,7 +157,7 @@ hr {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.95rem;
     line-height: 1.9;
-    color: #1a1a2e;
+    color: #e2e8f0;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -344,7 +344,7 @@ if generate_btn:
             # ── Display ──
             st.markdown("---")
             st.markdown("## 📋 Aapka 30-Day Roadmap")
-            st.success(roadmap_text)
+            st.markdown(f"<div class='roadmap-text'>{roadmap_text}</div>", unsafe_allow_html=True)
 
             # ── Tips ──
             st.info(
