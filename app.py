@@ -512,159 +512,105 @@ div[data-testid="stAlert"] { border-radius:var(--rad-md) !important; border:none
     .premium-banner { flex-direction:column; }
 }
 /* ══════════════════════════════════════════════════
-   TASK 3: CHIP BUTTON VERTICAL GAP — Ultra Compact
+   FIX 1: CHIP BUTTON VERTICAL GAP — Ultra Compact
    ══════════════════════════════════════════════════ */
 
+/* Kill all vertical padding on column wrappers */
 div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
 }
+
+/* Kill the inner element block gap inside each column */
 div[data-testid="column"] > div[data-testid="stVerticalBlock"] {
     gap: 0px !important;
 }
+
+/* Remove margin from chip wrapper div */
 .chip-btn {
     margin-top: 0px !important;
     margin-bottom: 2px !important;
     line-height: 1 !important;
 }
+
+/* Shrink the stButton wrapper padding inside chips */
 .chip-btn > div[data-testid="stButton"] {
     margin-bottom: 0px !important;
     padding-bottom: 0px !important;
 }
+
+/* Remove gap Streamlit adds between stButton elements */
 div[data-testid="stVerticalBlock"] > div[data-testid="stButton"] {
     margin-bottom: 0px !important;
 }
+
+/* Chip button height — compact but readable */
 .chip-btn div.stButton > button {
-    height: 40px !important;
+    height: 44px !important;
 }
 
 /* ══════════════════════════════════════════════════
-   TASK 5: ACTIVE / SELECTED CHIP STATE
+   FIX 2: GLOBAL COLUMN PADDING RESET
    ══════════════════════════════════════════════════ */
-.chip-btn-active div.stButton > button {
-    background: rgba(124,106,247,0.38) !important;
-    border: 1.5px solid #7c6af7 !important;
-    color: #ffffff !important;
-    box-shadow: 0 0 10px rgba(124,106,247,0.4) !important;
-}
-.chip-btn-active div.stButton > button:hover {
-    background: rgba(124,106,247,0.48) !important;
-}
 
-/* ══════════════════════════════════════════════════
-   TASK 6: GLOBAL SPACING CLEANUP
-   ══════════════════════════════════════════════════ */
 div[data-testid="column"] {
     padding-bottom: 0px !important;
     padding-top: 0px !important;
 }
+
+/* block-container top padding */
 .block-container {
     padding-top: 1rem !important;
 }
 
 /* ══════════════════════════════════════════════════
-   TASK 1+2: INPUT ROW — skill input + action buttons
+   FIX 3: LANGUAGE + DIFFICULTY + GENERATE BUTTON
+   Perfect horizontal alignment — same height baseline
    ══════════════════════════════════════════════════ */
 
-/* Skill input row: input gets large flex share */
-.input-row-wrap div[data-testid="column"]:first-child {
-    flex: 5 !important;
-}
-.input-row-wrap div[data-testid="column"]:not(:first-child) {
-    flex: 1 !important;
-}
-
-/* Align all columns in input row to bottom */
-.input-row-wrap div[data-testid="column"] {
+/* Scope only the lang/diff/gen row using gen-btn sibling */
+div[data-testid="stHorizontalBlock"]:has(.gen-btn) > div[data-testid="column"] {
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-end !important;
+    padding-top: 0.4rem !important;
 }
 
-/* input field height */
-.input-row-wrap .stTextInput > div > div {
-    height: 50px !important;
-    min-height: 50px !important;
-}
-
-/* action buttons in input row — same height as input */
-.input-row-wrap div.stButton > button {
-    height: 50px !important;
-    min-height: 50px !important;
-    padding: 0 0.8rem !important;
-    font-size: 0.88rem !important;
-}
-
-/* Reset button — subtle ghost style */
-.reset-btn div.stButton > button {
-    background: transparent !important;
-    border: 1.5px solid rgba(255,255,255,0.15) !important;
-    color: var(--text-sec) !important;
-    box-shadow: none !important;
-}
-.reset-btn div.stButton > button:hover {
-    border-color: rgba(255,100,100,0.45) !important;
-    color: #ff8080 !important;
-    transform: none !important;
-    box-shadow: none !important;
-}
-
-/* Random skill button — accent ghost style */
-.random-btn div.stButton > button {
-    background: transparent !important;
-    border: 1.5px solid rgba(124,106,247,0.35) !important;
-    color: #c4b8ff !important;
-    box-shadow: none !important;
-}
-.random-btn div.stButton > button:hover {
-    background: rgba(124,106,247,0.12) !important;
-    border-color: #7c6af7 !important;
-    transform: none !important;
-    box-shadow: none !important;
-}
-
-/* ══════════════════════════════════════════════════
-   TASK 2: FILTER ROW — Language + Difficulty
-   ══════════════════════════════════════════════════ */
-.filter-row-wrap div[data-testid="column"] {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-end !important;
-    padding-top: 0.5rem !important;
-}
-.filter-row-wrap .stSelectbox > div > div {
-    height: 50px !important;
-    min-height: 50px !important;
+/* Selectbox fixed height to match button */
+div[data-testid="stHorizontalBlock"]:has(.gen-btn) .stSelectbox > div > div {
+    height: 55px !important;
+    min-height: 55px !important;
     display: flex !important;
     align-items: center !important;
 }
-.filter-row-wrap .stSelectbox label {
+
+/* Standardise label height so baselines lock */
+div[data-testid="stHorizontalBlock"]:has(.gen-btn) .stSelectbox label {
     display: block !important;
-    height: 20px !important;
-    line-height: 20px !important;
+    height: 22px !important;
+    line-height: 22px !important;
     margin-bottom: 4px !important;
 }
 
-/* Generate button inside filter row */
+/* Generate button wrapper */
 .gen-btn {
     margin-top: 0px !important;
     width: 100% !important;
 }
-.gen-btn div.stButton > button {
-    height: 50px !important;
-    min-height: 50px !important;
-    margin-top: 0px !important;
+
+/* Invisible spacer above gen-btn — matches label height */
+.gen-btn::before {
+    content: '' !important;
+    display: block !important;
+    height: 26px !important;
+    visibility: hidden !important;
 }
 
-/* ══════════════════════════════════════════════════
-   TASK 7: MOBILE RESPONSIVENESS
-   ══════════════════════════════════════════════════ */
-@media (max-width: 640px) {
-    .input-row-wrap div[data-testid="column"]:first-child { flex: 3 !important; }
-    .input-row-wrap div[data-testid="column"]:not(:first-child) { flex: 1 !important; }
-    .chip-btn div.stButton > button { font-size: 0.72rem !important; height: 36px !important; }
-    .gen-btn div.stButton > button { font-size: 0.82rem !important; }
-    .filter-row-wrap .stSelectbox > div > div { height: 46px !important; min-height: 46px !important; }
+/* Generate button — match selectbox height exactly */
+.gen-btn div.stButton > button {
+    height: 55px !important;
+    min-height: 55px !important;
+    margin-top: 0px !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -1123,11 +1069,10 @@ st.markdown('<div class="ad-slot">📢 ADVERTISEMENT — Google AdSense Placemen
 st.markdown('<div class="glass-card">', unsafe_allow_html=True)
 st.markdown('<div class="section-label">🎯 Configure Your Roadmap</div>', unsafe_allow_html=True)
 
-# ── TASK 1: Skill input + Reset + Random — same row ──
-st.markdown('<div class="input-row-wrap">', unsafe_allow_html=True)
-col_input, col_random, col_reset = st.columns([5, 1, 1], gap="small")
+# Skill text input (key links to session state)
+col_center = st.columns([1,2,1])[1]
 
-with col_input:
+with col_center:
     skill_input = st.text_input(
         "🎯 Aap kaunsi Skill seekhna chahte hain?",
         value=st.session_state.skill_input_val,
@@ -1135,67 +1080,44 @@ with col_input:
         max_chars=80,
         key="skill_input_val",
     )
-
-with col_random:
-    st.markdown('<div class="random-btn">', unsafe_allow_html=True)
-    if st.button("🎲 Random", use_container_width=True, key="btn_random"):
-        import random as _rnd
-        st.session_state.skill_input_val = _rnd.choice(SKILL_CHIPS)
-        st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
-
-with col_reset:
-    st.markdown('<div class="reset-btn">', unsafe_allow_html=True)
-    if st.button("🗑️ Reset", use_container_width=True, key="btn_reset"):
-        st.session_state.skill_input_val  = ""
-        st.session_state.current_roadmap  = None
-        st.session_state.current_skill    = ""
-        st.session_state.yt_script        = None
-        st.session_state.show_yt          = False
-        st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
-
-st.markdown('</div>', unsafe_allow_html=True)  # close input-row-wrap
-
-# ── Skill chips ──
-st.markdown('<div style="margin:0.4rem 0 0.3rem;"><span style="font-size:0.7rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">Quick Select →</span></div>',
+# Skill chips — row 1
+st.markdown('<div style="margin:-0.3rem 0 0.6rem;"><span style="font-size:0.7rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">Quick Select →</span></div>',
             unsafe_allow_html=True)
 
 for i in range(0, len(SKILL_CHIPS), 4):
     row = SKILL_CHIPS[i:i+4]
-    cols = st.columns(4, gap="small")
+
+    cols = st.columns(4, gap="small")  # 🔥 THIS LINE FIXES GAP
+
     for col, skill in zip(cols, row):
         with col:
-            # TASK 5: active chip highlight
-            is_active = st.session_state.skill_input_val == skill
-            css_class = "chip-btn chip-btn-active" if is_active else "chip-btn"
-            st.markdown(f'<div class="{css_class}">', unsafe_allow_html=True)
+            st.markdown('<div class="chip-btn">', unsafe_allow_html=True)
+
             st.button(
                 skill,
                 key=f"chip_{skill}",
                 use_container_width=True,
-                on_click=lambda s=skill: st.session_state.update({"skill_input_val": s}),
+                on_click=lambda s=skill: st.session_state.update({"skill_input_val": s})
             )
+
             st.markdown('</div>', unsafe_allow_html=True)
 
-# ── TASK 2: Language | Difficulty — filter row ──
-st.markdown('<div class="filter-row-wrap">', unsafe_allow_html=True)
-col_l, col_d, col_g = st.columns([1, 1, 1], gap="small")
 
+
+
+# Language | Difficulty | Generate
+col_l, col_d, col_g = st.columns([1,1,1])
 with col_l:
     lang_label = st.selectbox("🌐 Language", list(LANG_OPTIONS.keys()), index=0, key="sel_lang")
     lang_key   = LANG_OPTIONS[lang_label]
-
 with col_d:
     diff_label = st.selectbox("📊 Difficulty", list(DIFF_OPTIONS.keys()), index=0, key="sel_diff")
     diff_key   = DIFF_OPTIONS[diff_label]
-
 with col_g:
+    
     st.markdown('<div class="gen-btn">', unsafe_allow_html=True)
     generate_btn = st.button("✨ Generate Roadmap", use_container_width=True, key="gen_main")
     st.markdown('</div>', unsafe_allow_html=True)
-
-st.markdown('</div>', unsafe_allow_html=True)  # close filter-row-wrap
 
 st.markdown('</div>', unsafe_allow_html=True)  # close glass-card
 
@@ -1308,8 +1230,8 @@ if st.session_state.current_roadmap:
 
     st.markdown("---")
 
-    # Header + Action buttons
-    rh1, rh2, rh3 = st.columns([4, 1, 1])
+    # Header + Regenerate
+    rh1, rh2 = st.columns([4, 1])
     with rh1:
         st.markdown(f"""
 <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.4rem;">
@@ -1328,19 +1250,8 @@ if st.session_state.current_roadmap:
             st.session_state.current_roadmap = None
             st.session_state.yt_script = None
             st.session_state.show_yt = False
+            # Re-trigger: set generate flag via URL param workaround — just show message
             st.info("🔄 Skill naam dobara enter karke Generate click karo for a fresh roadmap!")
-    with rh3:
-        # TASK 4: Better Version button
-        if st.button("⚡ Better Version", use_container_width=True, key="better_ver"):
-            st.session_state.regen_seed += 1
-            for _k in list(st.session_state.cache.keys()):
-                if _k.startswith(f"{skill_name}|"):
-                    del st.session_state.cache[_k]
-            st.session_state.current_roadmap = None
-            st.session_state.yt_script = None
-            st.session_state.show_yt = False
-            st.session_state.skill_input_val = skill_name
-            st.info("⚡ Better version generate ho raha hai — Generate button click karo!")
 
     # Render parsed roadmap
     parsed = parse_roadmap(roadmap_txt)
