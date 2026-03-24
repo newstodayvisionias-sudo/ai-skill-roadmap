@@ -962,7 +962,7 @@ for i, skill in enumerate(SKILL_CHIPS):
 st.markdown("<br>", unsafe_allow_html=True)
 
 # Language | Difficulty | Generate
-col_l, col_d, col_g = st.columns([1.3, 1.3, 1])
+col_l, col_d, col_g = st.columns(3)
 with col_l:
     lang_label = st.selectbox("🌐 Language", list(LANG_OPTIONS.keys()), index=0, key="sel_lang")
     lang_key   = LANG_OPTIONS[lang_label]
