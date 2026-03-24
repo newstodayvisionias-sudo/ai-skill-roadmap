@@ -324,7 +324,7 @@ if generate_btn:
 
             with st.spinner("🤖 AI aapka personalized roadmap bana raha hai... Thoda wait karo! ⏳"):
                 response = client.chat.completions.create(
-                    model="model="llama-3.3-70b-versatile",
+                    model="llama-3.3-70b-versatile",
                     messages=[
                         {
                             "role": "system",
