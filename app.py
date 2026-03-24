@@ -231,10 +231,12 @@ input::placeholder { color:var(--text-muted) !important; }
     border: 1px solid var(--border) !important;
     border-radius: var(--rad-md) !important;
     color: var(--text-pri) !important;
+
     height: 55px !important;
-display: flex !important;
-align-items: center !important;
-justify-content: center !important;
+    display: flex !important;
+    align-items: center !important;
+
+    padding: 0 12px !important;
 }
 .stSelectbox label p { color:var(--text-sec) !important; font-size:0.85rem !important; font-weight:500 !important; }
 .stSelectbox label {
@@ -260,7 +262,12 @@ div.stButton > button:hover {
 div.stButton > button:active { transform: translateY(0) !important; }
 /* chip buttons */
 .chip-btn {
-    height: 60px;
+    margin-bottom: 6px !important;
+    height: auto !important;
+}
+/* rows ke beech gap control */
+div[data-testid="column"] {
+    padding-bottom: 0.3rem !important;
 }
 .chip-btn div.stButton > button {
     width: 100% !important;
@@ -294,7 +301,7 @@ div.stButton > button:active { transform: translateY(0) !important; }
 
 /* generate button */
 .gen-btn {
-    margin-top: 28px;
+    margin-top: 22px !important;
 }
 .gen-btn div.stButton > button {
 height: 55px !important;
