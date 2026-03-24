@@ -953,24 +953,24 @@ with col_center:
 st.markdown('<div style="margin:-0.3rem 0 0.6rem;"><span style="font-size:0.7rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">Quick Select →</span></div>',
             unsafe_allow_html=True)
 
-
-cols = st.columns(4)
-
 for i in range(0, len(SKILL_CHIPS), 4):
+    row = SKILL_CHIPS[i:i+4]
     cols = st.columns(4)
 
-    for j in range(4):
-        if i + j < len(SKILL_CHIPS):
-            skill = SKILL_CHIPS[i + j]
+    for col, skill in zip(cols, row):
+        with col:
+            st.markdown('<div class="chip-btn">', unsafe_allow_html=True)
 
-            with cols[j]:
-                st.markdown('<div class="chip-btn">', unsafe_allow_html=True)
+            st.button(
+                skill,
+                key=f"chip_{skill}",
+                use_container_width=True,
+                on_click=lambda s=skill: st.session_state.update({"skill_input_val": s})
+            )
 
-                if st.button(skill, key=f"chip_{skill}"):
-                    st.session_state.skill_input_val = skill
-                    st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True)
 
-                st.markdown('</div>', unsafe_allow_html=True)
+
 
 st.markdown("<br>", unsafe_allow_html=True)
 
