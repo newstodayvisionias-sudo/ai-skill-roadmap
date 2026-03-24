@@ -1006,7 +1006,7 @@ st.markdown('<div style="margin:-0.3rem 0 0.6rem;"><span style="font-size:0.7rem
 for i in range(0, len(SKILL_CHIPS), 4):
     row = SKILL_CHIPS[i:i+4]
 
-    cols = st.columns(4, gap=None)  # 🔥 THIS LINE FIXES GAP
+    cols = st.columns(4, gap="small")  # 🔥 THIS LINE FIXES GAP
 
     for col, skill in zip(cols, row):
         with col:
