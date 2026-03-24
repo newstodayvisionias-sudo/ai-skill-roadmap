@@ -926,7 +926,8 @@ st.markdown('<div class="section-label">🎯 Configure Your Roadmap</div>', unsa
 
 # Skill text input (key links to session state)
 col_center = st.columns([1,2,1])[1]
-    with col_center:
+
+with col_center:
     skill_input = st.text_input(
         "🎯 Aap kaunsi Skill seekhna chahte hain?",
         value=st.session_state.skill_input_val,
@@ -934,7 +935,6 @@ col_center = st.columns([1,2,1])[1]
         max_chars=80,
         key="skill_input_val",
     )
-
 # Skill chips — row 1
 st.markdown('<div style="margin:-0.3rem 0 0.6rem;"><span style="font-size:0.7rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">Quick Select →</span></div>',
             unsafe_allow_html=True)
