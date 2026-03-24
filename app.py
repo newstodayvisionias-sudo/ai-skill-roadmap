@@ -255,17 +255,29 @@ div.stButton > button:active { transform: translateY(0) !important; }
 
 /* chip buttons */
 .chip-btn div.stButton > button {
-     width: 100% !important;
-    height: 55px !important;  /* fixed height */
+    width: 100% !important;
+    height: 55px !important;
 
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
 
-    padding: 0 10px !important;  /* equal padding */
+    padding: 0 10px !important;
 
     background: rgba(124,106,247,0.12) !important;
     border: 1px solid rgba(124,106,247,0.3) !important;
+    color: #c4b8ff !important;
+
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+
+    border-radius: 12px !important;
+    box-shadow: none !important;
+
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
     color: #c4b8ff !important;
 
     font-size: 0.82rem !important;
@@ -967,13 +979,21 @@ st.markdown('<div style="margin:-0.3rem 0 0.6rem;"><span style="font-size:0.7rem
 
 cols = st.columns(4)
 
-for i, skill in enumerate(SKILL_CHIPS):
-    with cols[i % 4]:
-        st.markdown('<div class="chip-btn">', unsafe_allow_html=True)
-        if st.button(skill, key=f"chip_{skill}"):
-            st.session_state.skill_input_val = skill
-            st.rerun()
-        st.markdown('</div>', unsafe_allow_html=True)
+for i in range(0, len(SKILL_CHIPS), 4):
+    cols = st.columns(4)
+
+    for j in range(4):
+        if i + j < len(SKILL_CHIPS):
+            skill = SKILL_CHIPS[i + j]
+
+            with cols[j]:
+                st.markdown('<div class="chip-btn">', unsafe_allow_html=True)
+
+                if st.button(skill, key=f"chip_{skill}"):
+                    st.session_state.skill_input_val = skill
+                    st.rerun()
+
+                st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
