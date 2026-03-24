@@ -511,37 +511,106 @@ div[data-testid="stAlert"] { border-radius:var(--rad-md) !important; border:none
 @media (max-width:480px) {
     .premium-banner { flex-direction:column; }
 }
-/* ULTRA COMPACT CHIP GRID FIX */
+/* ══════════════════════════════════════════════════
+   FIX 1: CHIP BUTTON VERTICAL GAP — Ultra Compact
+   ══════════════════════════════════════════════════ */
 
-/* row gap almost zero */
-
-/* column ke neeche ka gap hata do */
-div[data-testid="column"] {
+/* Kill all vertical padding on column wrappers */
+div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {
+    padding-top: 0px !important;
     padding-bottom: 0px !important;
 }
 
-/* button ke beech vertical space remove */
+/* Kill the inner element block gap inside each column */
+div[data-testid="column"] > div[data-testid="stVerticalBlock"] {
+    gap: 0px !important;
+}
+
+/* Remove margin from chip wrapper div */
 .chip-btn {
+    margin-top: 0px !important;
+    margin-bottom: 2px !important;
+    line-height: 1 !important;
+}
+
+/* Shrink the stButton wrapper padding inside chips */
+.chip-btn > div[data-testid="stButton"] {
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+/* Remove gap Streamlit adds between stButton elements */
+div[data-testid="stVerticalBlock"] > div[data-testid="stButton"] {
     margin-bottom: 0px !important;
 }
 
-/* button height thodi reduce (optional but pro look) */
+/* Chip button height — compact but readable */
 .chip-btn div.stButton > button {
-    height: 48px !important;
+    height: 44px !important;
 }
 
-/* pura grid tight karne ke liye */
+/* ══════════════════════════════════════════════════
+   FIX 2: GLOBAL COLUMN PADDING RESET
+   ══════════════════════════════════════════════════ */
+
+div[data-testid="column"] {
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+}
+
+/* block-container top padding */
 .block-container {
     padding-top: 1rem !important;
 }
-div[data-testid="column"] > div {
+
+/* ══════════════════════════════════════════════════
+   FIX 3: LANGUAGE + DIFFICULTY + GENERATE BUTTON
+   Perfect horizontal alignment — same height baseline
+   ══════════════════════════════════════════════════ */
+
+/* Scope only the lang/diff/gen row using gen-btn sibling */
+div[data-testid="stHorizontalBlock"]:has(.gen-btn) > div[data-testid="column"] {
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-end !important;
+    padding-top: 0.4rem !important;
 }
 
+/* Selectbox fixed height to match button */
+div[data-testid="stHorizontalBlock"]:has(.gen-btn) .stSelectbox > div > div {
+    height: 55px !important;
+    min-height: 55px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Standardise label height so baselines lock */
+div[data-testid="stHorizontalBlock"]:has(.gen-btn) .stSelectbox label {
+    display: block !important;
+    height: 22px !important;
+    line-height: 22px !important;
+    margin-bottom: 4px !important;
+}
+
+/* Generate button wrapper */
 .gen-btn {
-    margin-top: 6px !important;
+    margin-top: 0px !important;
+    width: 100% !important;
+}
+
+/* Invisible spacer above gen-btn — matches label height */
+.gen-btn::before {
+    content: '' !important;
+    display: block !important;
+    height: 26px !important;
+    visibility: hidden !important;
+}
+
+/* Generate button — match selectbox height exactly */
+.gen-btn div.stButton > button {
+    height: 55px !important;
+    min-height: 55px !important;
+    margin-top: 0px !important;
 }
 </style>
 """, unsafe_allow_html=True)
