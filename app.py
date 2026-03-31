@@ -43,6 +43,7 @@ _DEFAULTS = {
     "show_history":    False,
     "regen_seed":      0,
     "skill_input_val": "",
+    "auto_generate": False,
 }
 for _k, _v in _DEFAULTS.items():
     if _k not in st.session_state:
@@ -135,7 +136,7 @@ html, body, [class*="css"] {
         #06040f !important;
 }
 .block-container {
-    max-width: 1400px !important;
+    max-width: 1100px !important;
     padding-left: 2rem !important;
     padding-right: 2rem !important;
 }
@@ -546,7 +547,7 @@ div[data-testid="stVerticalBlock"] > div[data-testid="stButton"] {
 
 /* Chip button height — compact but readable */
 .chip-btn div.stButton > button {
-    height: 44px !important;
+    height: 50px !important;
 }
 
 /* ══════════════════════════════════════════════════
@@ -1069,17 +1070,39 @@ st.markdown('<div class="ad-slot">📢 ADVERTISEMENT — Google AdSense Placemen
 st.markdown('<div class="glass-card">', unsafe_allow_html=True)
 st.markdown('<div class="section-label">🎯 Configure Your Roadmap</div>', unsafe_allow_html=True)
 
-# Skill text input (key links to session state)
-col_center = st.columns([1,2,1])[1]
+# Skill Input (Full Width)
+skill_input = st.text_input(
+    "🎯 Aap kaunsi Skill seekhna chahte hain?",
+    value=st.session_state.skill_input_val,
+    placeholder="e.g. Python, Stock Market, Video Editing...",
+    max_chars=80,
+    key="skill_input_val",
+)
 
-with col_center:
-    skill_input = st.text_input(
-        "🎯 Aap kaunsi Skill seekhna chahte hain?",
-        value=st.session_state.skill_input_val,
-        placeholder="e.g. Python, Stock Market, Video Editing...",
-        max_chars=80,
-        key="skill_input_val",
-    )
+# Language | Difficulty | Generate (same row)
+col_l, col_d, col_g = st.columns([1,1,1])
+
+with col_l:
+    lang_label = st.selectbox("🌐 Language", list(LANG_OPTIONS.keys()), index=0, key="sel_lang")
+    lang_key   = LANG_OPTIONS[lang_label]
+
+with col_d:
+    diff_label = st.selectbox("📊 Difficulty", list(DIFF_OPTIONS.keys()), index=0, key="sel_diff")
+    diff_key   = DIFF_OPTIONS[diff_label]
+
+with col_g:
+    st.markdown('<div class="gen-btn">', unsafe_allow_html=True)
+    generate_btn = st.button("✨ Generate", use_container_width=True, key="gen_main")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+
+import random
+
+
+# 👇 Proper placement (input ke neeche)
+if st.button("🎲 Try Random Skill"):
+    st.session_state.skill_input_val = random.choice(SKILL_CHIPS)
+    st.rerun()
 # Skill chips — row 1
 st.markdown('<div style="margin:-0.3rem 0 0.6rem;"><span style="font-size:0.7rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">Quick Select →</span></div>',
             unsafe_allow_html=True)
@@ -1094,11 +1117,14 @@ for i in range(0, len(SKILL_CHIPS), 4):
             st.markdown('<div class="chip-btn">', unsafe_allow_html=True)
 
             st.button(
-                skill,
-                key=f"chip_{skill}",
-                use_container_width=True,
-                on_click=lambda s=skill: st.session_state.update({"skill_input_val": s})
-            )
+    skill,
+    key=f"chip_{skill}",
+    use_container_width=True,
+    on_click=lambda s=skill: st.session_state.update({
+        "skill_input_val": s,
+        "auto_generate": True
+    })
+)
 
             st.markdown('</div>', unsafe_allow_html=True)
 
@@ -1106,18 +1132,7 @@ for i in range(0, len(SKILL_CHIPS), 4):
 
 
 # Language | Difficulty | Generate
-col_l, col_d, col_g = st.columns([1,1,1])
-with col_l:
-    lang_label = st.selectbox("🌐 Language", list(LANG_OPTIONS.keys()), index=0, key="sel_lang")
-    lang_key   = LANG_OPTIONS[lang_label]
-with col_d:
-    diff_label = st.selectbox("📊 Difficulty", list(DIFF_OPTIONS.keys()), index=0, key="sel_diff")
-    diff_key   = DIFF_OPTIONS[diff_label]
-with col_g:
-    
-    st.markdown('<div class="gen-btn">', unsafe_allow_html=True)
-    generate_btn = st.button("✨ Generate Roadmap", use_container_width=True, key="gen_main")
-    st.markdown('</div>', unsafe_allow_html=True)
+
 
 st.markdown('</div>', unsafe_allow_html=True)  # close glass-card
 
@@ -1125,7 +1140,17 @@ st.markdown('</div>', unsafe_allow_html=True)  # close glass-card
 # ════════════════════════════════════════════════════════════════
 # GENERATION LOGIC
 # ════════════════════════════════════════════════════════════════
+# AUTO GENERATE TRIGGER (chip click)
+if st.session_state.get("auto_generate"):
+st.toast("⚡ Generating roadmap...", icon="🚀")
+    generate_btn = True
+    st.session_state.auto_generate = False
 if generate_btn:
+mport time
+    if "last_click" in st.session_state:
+        if time.time() - st.session_state.last_click < 2:
+            st.stop()
+    st.session_state.last_click = time.time()
     skill_clean = st.session_state.skill_input_val.strip()
 
     if not skill_clean:
@@ -1225,6 +1250,14 @@ if generate_btn:
 # DISPLAY ROADMAP
 # ════════════════════════════════════════════════════════════════
 if st.session_state.current_roadmap:
+    st.markdown("""
+    <script>
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    });
+    </script>
+    """, unsafe_allow_html=True)
     roadmap_txt = st.session_state.current_roadmap
     skill_name  = st.session_state.current_skill
 
@@ -1242,17 +1275,22 @@ if st.session_state.current_roadmap:
   </span>
 </div>""", unsafe_allow_html=True)
     with rh2:
-        if st.button("🔄 Regenerate", use_container_width=True, key="regen"):
-            st.session_state.regen_seed += 1
-            old_key = f"{skill_name}|{st.session_state.current_lang}|{st.session_state.current_diff}|{st.session_state.regen_seed - 1}"
-            if old_key in st.session_state.cache:
-                del st.session_state.cache[old_key]
-            st.session_state.current_roadmap = None
-            st.session_state.yt_script = None
-            st.session_state.show_yt = False
-            # Re-trigger: set generate flag via URL param workaround — just show message
-            st.info("🔄 Skill naam dobara enter karke Generate click karo for a fresh roadmap!")
+      if st.button("🔄 Regenerate", use_container_width=True, key="regen"):
+        st.session_state.regen_seed += 1
 
+        old_key = f"{skill_name}|{st.session_state.current_lang}|{st.session_state.current_diff}|{st.session_state.regen_seed - 1}"
+        if old_key in st.session_state.cache:
+            del st.session_state.cache[old_key]
+
+        # reset state
+        st.session_state.current_roadmap = None
+        st.session_state.yt_script = None
+        st.session_state.show_yt = False
+
+        # 🔥 AUTO GENERATE
+        st.session_state.auto_generate = True
+        st.rerun()
+        
     # Render parsed roadmap
     parsed = parse_roadmap(roadmap_txt)
     render_roadmap_ui(parsed)
