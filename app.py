@@ -217,6 +217,10 @@ html, body, [class*="css"] {
     font-size: 1.04rem !important;
     transition: var(--trans) !important;
 }
+.stTextInput {
+    max-width: 700px !important;
+    margin: auto !important;
+}
 .stTextInput > div > div:focus-within {
     border-color: var(--accent) !important;
     box-shadow: 0 0 0 3px rgba(124,106,247,0.18) !important;
@@ -304,8 +308,7 @@ div[data-testid="column"] {
 }
 .chip-btn div.stButton > button:hover {
     background: rgba(124,106,247,0.25) !important;
-    transform: none !important;
-    box-shadow: none !important;
+    box-shadow: 0 0 12px rgba(124,106,247,0.3) !important;
 }
 
 /* generate button */
@@ -325,7 +328,8 @@ justify-content: center !important;
     box-shadow: 0 4px 22px rgba(249,212,35,0.3) !important;
 }
 .gen-btn div.stButton > button:hover {
-    box-shadow: 0 8px 30px rgba(249,212,35,0.5) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 10px 30px rgba(249,212,35,0.5) !important;
 }
 
 /* ════ DOWNLOAD BUTTON ════ */
@@ -1080,7 +1084,13 @@ skill_input = st.text_input(
 )
 
 # Language | Difficulty | Generate (same row)
-col_l, col_d, col_g = st.columns([1,1,1])
+col_l, col_d, col_g, col_r = st.columns([1,1,1,1])
+with col_r:
+    if st.button("🎲 Random", use_container_width=True):
+        import random
+        random_skill = random.choice(SKILL_CHIPS)
+        st.session_state.skill_input_val = random_skill
+        st.session_state.auto_generate = True
 
 with col_l:
     lang_label = st.selectbox("🌐 Language", list(LANG_OPTIONS.keys()), index=0, key="sel_lang")
@@ -1100,7 +1110,7 @@ import random
 
 
 # 👇 Proper placement (input ke neeche)
-if st.button("🎲 Try Random Skill"):
+if 
     st.session_state.skill_input_val = random.choice(SKILL_CHIPS)
     st.rerun()
 # Skill chips — row 1
