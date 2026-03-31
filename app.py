@@ -1141,15 +1141,19 @@ st.markdown('</div>', unsafe_allow_html=True)  # close glass-card
 # GENERATION LOGIC
 # ════════════════════════════════════════════════════════════════
 # AUTO GENERATE TRIGGER (chip click)
+# AUTO GENERATE TRIGGER (chip click)
 if st.session_state.get("auto_generate"):
-st.toast("⚡ Generating roadmap...", icon="🚀")
+    st.toast("⚡ Generating roadmap...", icon="🚀")
     generate_btn = True
     st.session_state.auto_generate = False
+
 if generate_btn:
-mport time
+    import time
+
     if "last_click" in st.session_state:
         if time.time() - st.session_state.last_click < 2:
             st.stop()
+
     st.session_state.last_click = time.time()
     skill_clean = st.session_state.skill_input_val.strip()
 
