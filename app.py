@@ -1110,9 +1110,7 @@ import random
 
 
 # 👇 Proper placement (input ke neeche)
-if 
-    st.session_state.skill_input_val = random.choice(SKILL_CHIPS)
-    st.rerun()
+
 # Skill chips — row 1
 st.markdown('<div style="margin:-0.3rem 0 0.6rem;"><span style="font-size:0.7rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">Quick Select →</span></div>',
             unsafe_allow_html=True)
